@@ -8,42 +8,70 @@
 
   <style>
     body {
-      margin: 0;
-      background: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
+      background: black;
+      color: white;
+      font-family: "Comic Sans MS", cursive, sans-serif;
       text-align: center;
+      margin: 0;
+      padding: 40px 20px;
     }
 
     h1 {
-      font-size: 48px;
-      margin: 30px 0 10px;
+      font-size: 60px;
       color: #cc66ff;
+      text-shadow: 3px 3px #660099;
+      margin-bottom: 10px;
     }
 
     .subtitle {
-      color: #ffff00;
-      margin-bottom: 25px;
+      font-size: 20px;
+      color: yellow;
+      margin-bottom: 35px;
     }
 
-    .generator {
-      width: 100%;
-      max-width: 900px;
-      height: 900px;
-      margin: 0 auto;
-      border: 3px solid #660099;
-      background: white;
+    .wizard {
+      font-size: 80px;
     }
 
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
+    .cast-button {
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 24px;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      font-weight: bold;
+      color: white;
+      background: #660099;
+      border: 4px outset #cc66ff;
+      cursor: pointer;
+      margin: 20px;
+    }
+
+    .cast-button:hover {
+      background: #9900cc;
+    }
+
+    .status {
+      margin: 30px auto;
+      padding: 20px;
+      border: 4px dashed yellow;
+      max-width: 600px;
+      font-size: 22px;
+      color: #00ff00;
+    }
+
+    .construction {
+      margin: 40px auto;
+      padding: 15px;
+      max-width: 600px;
+      color: yellow;
+      font-size: 18px;
     }
   </style>
 </head>
 
 <body>
+
+  <div class="wizard">🧙‍♂️✨</div>
 
   <h1>🔮 CAST MAIGIC 🔮</h1>
 
@@ -51,12 +79,66 @@
     THE PREMIER AI-POWERED MAIGIC SUMMONING ENGINE
   </div>
 
-  <div class="generator">
-    <iframe
-      src="https://null.perchance.org/6q1dwtymnt"
-      title="CAST MAIGIC">
-    </iframe>
+  <button class="cast-button" onclick="openPerchance()">
+    🔮 CAST MAIGIC 🔮
+  </button>
+
+  <div class="status" id="status">
+    Awaiting magical intervention...
   </div>
+
+  <div class="construction">
+    🚧 UNDER CONSTRUCTION 🚧
+    <br><br>
+    This revolutionary technology is currently being
+    developed by people who probably shouldn't be allowed
+    to write software.
+  </div>
+
+  <p>
+    👁️ Visitors since 1997: <b>000042</b>
+  </p>
+
+  <p>
+    Best viewed in Netscape Navigator 4.0 or higher.
+  </p>
+
+
+  <script>
+
+    function openPerchance() {
+
+      document.getElementById("status").innerHTML =
+        "🔮 Consulting the ancient computational oracles...";
+
+      window.open(
+        "https://perchance.org/6q1dwtymnt",
+        "CAST_MAIGIC_ENGINE",
+        "width=900,height=900"
+      );
+    }
+
+
+    window.addEventListener("message", function(event) {
+
+      if (event.origin !== "https://perchance.org") {
+        return;
+      }
+
+      console.log(
+        "CAST MAIGIC MESSAGE RECEIVED:",
+        event.data
+      );
+
+      if (event.data.type === "CAST_MAIGIC_TEST") {
+
+        document.getElementById("status").innerHTML =
+          "✨ " + event.data.message + " ✨";
+      }
+
+    });
+
+  </script>
 
 </body>
 </html>
