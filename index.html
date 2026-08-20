@@ -59,6 +59,20 @@
       color: #00ff00;
     }
 
+    .character {
+      margin: 30px auto;
+      padding: 25px;
+      border: 4px solid #cc66ff;
+      max-width: 600px;
+      font-size: 24px;
+      background: #111;
+    }
+
+    .character h2 {
+      color: #cc66ff;
+      font-size: 36px;
+    }
+
     .construction {
       margin: 40px auto;
       padding: 15px;
@@ -85,6 +99,18 @@
 
   <div class="status" id="status">
     Awaiting magical intervention...
+  </div>
+
+  <div class="character" id="character" style="display:none;">
+
+    <h2>YOU HAVE RETURNED:</h2>
+
+    <div id="name"></div>
+    <br>
+
+    <div><b>Race:</b> <span id="race"></span></div>
+    <div><b>Class:</b> <span id="class"></span></div>
+
   </div>
 
   <div class="construction">
@@ -119,18 +145,35 @@
     }
 
 
-window.addEventListener("message", function(event) {
+    function readMagic() {
 
-  console.log("MESSAGE RECEIVED:", event.origin, event.data);
+      const params = new URLSearchParams(window.location.search);
 
-  if (event.data && event.data.type === "CAST_MAIGIC_TEST") {
+      const name = params.get("name");
+      const race = params.get("race");
+      const characterClass = params.get("class");
 
-    document.getElementById("status").innerHTML =
-      "✨ " + event.data.message + " ✨";
+      if (name && race && characterClass) {
 
-  }
+        document.getElementById("status").innerHTML =
+          "✨ MAIGIC SUCCESSFULLY RETURNED ✨";
 
-});
+        document.getElementById("name").innerHTML =
+          "<h2>" + name + "</h2>";
+
+        document.getElementById("race").textContent =
+          race;
+
+        document.getElementById("class").textContent =
+          characterClass;
+
+        document.getElementById("character").style.display =
+          "block";
+      }
+    }
+
+
+    readMagic();
 
   </script>
 
