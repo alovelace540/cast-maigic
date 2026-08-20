@@ -119,24 +119,18 @@
     }
 
 
-    window.addEventListener("message", function(event) {
+window.addEventListener("message", function(event) {
 
-      if (event.origin !== "https://perchance.org") {
-        return;
-      }
+  console.log("MESSAGE RECEIVED:", event.origin, event.data);
 
-      console.log(
-        "CAST MAIGIC MESSAGE RECEIVED:",
-        event.data
-      );
+  if (event.data && event.data.type === "CAST_MAIGIC_TEST") {
 
-      if (event.data.type === "CAST_MAIGIC_TEST") {
+    document.getElementById("status").innerHTML =
+      "✨ " + event.data.message + " ✨";
 
-        document.getElementById("status").innerHTML =
-          "✨ " + event.data.message + " ✨";
-      }
+  }
 
-    });
+});
 
   </script>
 
