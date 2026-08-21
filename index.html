@@ -140,7 +140,17 @@
 
 
   <div class="character" id="character" style="display:none;">
-
+<img
+  id="characterImage"
+  alt="Summoned character"
+  style="
+    display:none;
+    width:500px;
+    max-width:90%;
+    margin:20px auto;
+    border:4px solid #cc66ff;
+  "
+>
     <h2>YOU HAVE SUMMONED:</h2>
 
     <div class="character-name" id="name"></div>
@@ -221,6 +231,7 @@
       const maigicRank = params.get("maigicRank");
       const maigicDescription = params.get("maigicDescription");
       const randomFact = params.get("randomFact");
+      const imageUrl = params.get("image");
 
 
       if (name) {
@@ -261,6 +272,11 @@
 
         document.getElementById("randomFact").textContent =
           randomFact || "";
+        if (imageUrl) {
+    const characterImage = document.getElementById("characterImage");
+    characterImage.src = imageUrl;
+    characterImage.style.display = "block";
+}
       }
     }
 
